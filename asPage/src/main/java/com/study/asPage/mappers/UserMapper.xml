@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.study.asPage.dao.UserDao">
+	<!-- 先定义一个Interface，UserMapper，然后Mapper文件的namespace指向的就是这个Interface， UserInterface里定义的方法和UserMapper.xml文件中的一样, 
+		然后代码里直接使用接口 -->
+	<resultMap id="BaseResultMap" type="com.study.asPage.entry.Student">
+		<id column="sId" property="sId" jdbcType="INTEGER" />
+		<result column="studentName" property="studentName" jdbcType="VARCHAR" />
+		<result column="age" property="age" jdbcType="INTEGER" />
+	</resultMap>
+	
+
+	<sql id="Base_Column_List">
+		id, userName, password
+	</sql>
+	<sql id="Base_Column_List1">
+	    sId,studentName,age
+	</sql>
+
+	
+
+	<!--用户登录 -->
+	<select id="loginByUserNameAndPassword"  resultType="com.study.asPage.entry.User" parameterType="com.study.asPage.entry.User">
+		select 
+		<include refid="Base_Column_List" />
+		 from t_User 
+		 where 
+		 userName = #{username} 
+		 and password = #{password} 
+	</select>
+	
+	<!-- 根据分页数据start 和size查询数据 -->
+	<select id="findByPage" parameterType="Map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List1" />
+		from t_student
+		<if test="start!=null and pageSize!=null">
+			limit #{start},#{pageSize}
+		</if>
+	</select>
+
+	<!--查询所有用户数据 -->
+	<select id="selectUserList" resultType="com.study.asPage.entry.User">
+		select
+		<include refid="Base_Column_List" />
+		from tb_user
+	</select>
+
+	<!-- 查询用户记录总数 -->
+	<select id="selectCount" resultType="int">
+		select count(*) from t_student
+	</select>
+</mapper>
