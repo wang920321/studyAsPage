@@ -42,16 +42,16 @@ public class UserServiceImpl implements UserService{
 		Map<String, Integer> map=new HashMap<String, Integer>();
 		PageBean<Student> pageBean=new PageBean<Student>();
 		pageBean.setCurrPage(currentPage);
-		pageBean.setPageSize(3);
+		int pageSize=3;
+		pageBean.setPageSize(pageSize);
 		int totalCount=userDao.selectCount();
 		pageBean.setTotalCount(totalCount);
+		//这里用到的向上取整，不能两个数都为int型，不然有可能不能显示最后一页的数据
 		Double tc=Double.valueOf(totalCount);
-		Double num= Math.ceil(tc/3);
-		System.out.println(totalCount/3);
-		System.out.println(num);
+		Double num= Math.ceil(tc/pageSize);
 		pageBean.setTotalPage(num.intValue());
-		map.put("start", (currentPage-1)*3);
-		map.put("pageSize", 3);
+		map.put("start", (currentPage-1)*pageSize);
+		map.put("pageSize", pageSize);
 		List<Student> list=userDao.findByPage(map);
 		pageBean.setLists(list);
 		return pageBean;

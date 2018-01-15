@@ -8,8 +8,14 @@
 		<result column="studentName" property="studentName" jdbcType="VARCHAR" />
 		<result column="age" property="age" jdbcType="INTEGER" />
 	</resultMap>
+	<!--可以定义多个resultMap  -->
+	<resultMap id="BaseResultMap1" type="com.study.asPage.entry.User">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+	</resultMap>
 	
-
+    <!--可以定义多个sql  -->
 	<sql id="Base_Column_List">
 		id, userName, password
 	</sql>
@@ -20,7 +26,7 @@
 	
 
 	<!--用户登录 -->
-	<select id="loginByUserNameAndPassword"  resultType="com.study.asPage.entry.User" parameterType="com.study.asPage.entry.User">
+	<select id="loginByUserNameAndPassword"  resultMap="BaseResultMap1" parameterType="com.study.asPage.entry.User">
 		select 
 		<include refid="Base_Column_List" />
 		 from t_User 
@@ -35,6 +41,7 @@
 		<include refid="Base_Column_List1" />
 		from t_student
 		<if test="start!=null and pageSize!=null">
+		<!--#{start},#{pageSize}传入的map集合中的key  -->
 			limit #{start},#{pageSize}
 		</if>
 	</select>
