@@ -42,7 +42,8 @@
 					<th>${u.sId }</th>
 					<th>${u.studentName }</th>
 					<th>${u.age }</th>
-					<th><a href="edit?id=${u.sId}">Edit</a></th>
+					<%-- <th><a href="edit?id=${u.sId}">Edit</a></th> --%>
+					<th><a href="query?id=${u.sId }">update</a></th>
 					<th><a href="delete?id=${u.sId}" onclick="return confirm('确定要删除吗')">Delete</a></th>
 				</tr>
 			</c:forEach>		

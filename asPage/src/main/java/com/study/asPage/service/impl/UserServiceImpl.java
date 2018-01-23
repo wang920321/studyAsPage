@@ -56,5 +56,37 @@ public class UserServiceImpl implements UserService{
 		pageBean.setLists(list);
 		return pageBean;
 	}
+	/* (non-Javadoc)
+	 * @see com.study.asPage.service.UserService#deleteStudent(java.lang.Integer)
+	 * @param sId
+	 */
+	@Override
+	public void deleteStudent(Integer sId) {
+		userDao.updateStatu(sId);
+		
+	}
+	/* (non-Javadoc)
+	 * @see com.study.asPage.service.UserService#updateStatu(java.lang.Integer)
+	 * @param sId
+	 */
+	/* (non-Javadoc)
+	 * @see com.study.asPage.service.UserService#selectById(java.lang.Integer)
+	 * @param sId
+	 * @return
+	 */
+	@Override
+	public Student selectById(Integer sId) {
+		return userDao.selectById(sId);
+	}
+	/* (non-Javadoc)
+	 * @see com.study.asPage.service.UserService#update(com.study.asPage.entry.Student)
+	 * @param student
+	 */
+	@Override
+	public void update(Student student) {
+		userDao.update(student);
+		
+	}
+	
 
 }

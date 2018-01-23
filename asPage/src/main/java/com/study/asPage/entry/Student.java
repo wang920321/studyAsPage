@@ -11,6 +11,7 @@ public class Student {
 	private Integer sId;
     private String studentName;
     private Integer age;
+    private Integer statu;
     
 	/**
 	 * @return the sId
@@ -48,4 +49,17 @@ public class Student {
 	public void setAge(Integer age) {
 		this.age = age;
 	}
+	/**
+	 * @return the statu
+	 */
+	public Integer getStatu() {
+		return statu;
+	}
+	/**
+	 * @param statu the statu to set
+	 */
+	public void setStatu(Integer statu) {
+		this.statu = statu;
+	}
+	
 }

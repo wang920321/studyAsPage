@@ -17,4 +17,8 @@ public interface UserDao {
 	User loginByUserNameAndPassword(User user);
 	List<Student> findByPage(Map<String, Integer> map);
 	int  selectCount();
+	void deleteStudent(Integer id);
+	 void updateStatu(Integer sId);
+	 Student selectById(Integer sId);
+	 void update(Student student);
 }

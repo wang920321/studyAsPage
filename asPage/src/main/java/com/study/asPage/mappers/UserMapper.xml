@@ -7,6 +7,7 @@
 		<id column="sId" property="sId" jdbcType="INTEGER" />
 		<result column="studentName" property="studentName" jdbcType="VARCHAR" />
 		<result column="age" property="age" jdbcType="INTEGER" />
+		<result column="statu" property="statu" jdbcType="INTEGER"/>
 	</resultMap>
 	<!--可以定义多个resultMap  -->
 	<resultMap id="BaseResultMap1" type="com.study.asPage.entry.User">
@@ -42,7 +43,8 @@
 		from t_student
 		<if test="start!=null and pageSize!=null">
 		<!--#{start},#{pageSize}传入的map集合中的key  -->
-			limit #{start},#{pageSize}
+		    where statu="1"
+			limit #{start},#{pageSize} 
 		</if>
 	</select>
 
@@ -56,5 +58,17 @@
 	<!-- 查询用户记录总数 -->
 	<select id="selectCount" resultType="int">
 		select count(*) from t_student
+	</select>
+	<delete id="deleteStudent" parameterType="Integer">
+	    delete from t_student where sId=#{sId}
+	</delete>
+	<update id="updateStatu" parameterType="INTEGER">
+	    update t_student set statu="0" where sId=#{sId}
+	</update>
+	<update id="update" parameterType="com.study.asPage.entry.Student">
+	    update t_student set studentName=#{studentName},age=#{age} where sId=#{sId}
+	</update>
+	<select id="selectById" parameterType="INTEGER" resultType="com.study.asPage.entry.Student">
+	    select * from t_student where sId=#{sId}
 	</select>
 </mapper>
