@@ -71,4 +71,7 @@
 	<select id="selectById" parameterType="INTEGER" resultType="com.study.asPage.entry.Student">
 	    select * from t_student where sId=#{sId}
 	</select>
+	<insert id="addStudent" parameterType="com.study.asPage.entry.Student">
+	    insert into t_student (sId,studentName,age,statu) values (#{sId},#{studentName},age=#{age},statu=#{statu})
+	</insert>
 </mapper>

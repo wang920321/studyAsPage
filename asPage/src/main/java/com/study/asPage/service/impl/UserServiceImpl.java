@@ -87,6 +87,15 @@ public class UserServiceImpl implements UserService{
 		userDao.update(student);
 		
 	}
+	/* (non-Javadoc)
+	 * @see com.study.asPage.service.UserService#addStudent(com.study.asPage.entry.Student)
+	 * @param student
+	 */
+	@Override
+	public void addStudent(Student student) {
+		userDao.addStudent(student);
+		
+	}
 	
 
 }

@@ -74,17 +74,27 @@ public class UserController {
     	
     }
     @RequestMapping("/update")
-    public String update(Model model,HttpServletRequest request) throws UnsupportedEncodingException{
-    	String sId = new String(request.getParameter("sId").getBytes("ISO-8859-1"), "UTF-8");  
+    public String update(@RequestParam("id") Integer id,Model model,HttpServletRequest request) throws UnsupportedEncodingException{
+    	  
     	String studentName = new String(request.getParameter("studentName").getBytes("ISO-8859-1"), "UTF-8"); 
     	String age = new String(request.getParameter("age").getBytes("ISO-8859-1"), "UTF-8"); 
     	System.out.println(studentName);
 		Student student=new Student();
-		student.setsId(Integer.valueOf(sId));
+		student.setsId(id);
+		System.out.println(student.getsId());
 		student.setStudentName(studentName);
 		student.setAge(Integer.valueOf(age));
-		service.update(student);
+		if(student.getsId()==null){
+			service.addStudent(student);
+		}else{
+			service.update(student);
+		}
     	return "redirect:main";
     	
     }
+    @RequestMapping("/tan")
+    public String tan(){
+    	return "update";
+    }
+    
 }

@@ -17,4 +17,5 @@ public interface UserService {
     void deleteStudent(Integer sId);
    Student selectById(Integer sId);
    void update(Student student);
+   void addStudent(Student student);
 }

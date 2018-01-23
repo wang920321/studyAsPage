@@ -22,7 +22,7 @@
     欢迎你：${currentUser}
     <br>
     <hr>
-    <a href="add"> 添加用户</a><br>
+    <a href="tan"> 添加用户</a><br>
 	<c:if test="${empty requestScope.pagemsg}">
 		没有任何用户信息！
 	</c:if>
