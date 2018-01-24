@@ -65,23 +65,25 @@ public class UserController {
     	
     }
     @RequestMapping("/query")
-    public String queryById(@RequestParam("id") Integer id,HttpServletRequest request){
+    public String queryById(@RequestParam("id") Integer id,Model model){
     	Student student=service.selectById(id);
-    	HttpSession session = request.getSession();
-    	session.setAttribute("student", student);
-    	/*model.addAttribute("student", student);*/
+    /*	HttpSession session = request.getSession();
+    	session.setAttribute("student", student);*/
+    	model.addAttribute("student", student);
 		return "update";
     	
     }
     @RequestMapping("/update")
-    public String update(@RequestParam("id") Integer id,Model model,HttpServletRequest request) throws UnsupportedEncodingException{
-    	  
+    public String update(Model model,HttpServletRequest request) throws UnsupportedEncodingException{
+    	Student student=new Student();
+    	if(request.getParameter("sId")!=null&&!request.getParameter("sId").equals("")){
+    	String sId=new String(request.getParameter("sId").getBytes("ISO-8859-1"), "UTF-8");  
+    	student.setsId(Integer.valueOf(sId));
+    	}
     	String studentName = new String(request.getParameter("studentName").getBytes("ISO-8859-1"), "UTF-8"); 
     	String age = new String(request.getParameter("age").getBytes("ISO-8859-1"), "UTF-8"); 
     	System.out.println(studentName);
-		Student student=new Student();
-		student.setsId(id);
-		System.out.println(student.getsId());
+    	System.out.println(age);
 		student.setStudentName(studentName);
 		student.setAge(Integer.valueOf(age));
 		if(student.getsId()==null){
@@ -94,6 +96,7 @@ public class UserController {
     }
     @RequestMapping("/tan")
     public String tan(){
+    	
     	return "update";
     }
     

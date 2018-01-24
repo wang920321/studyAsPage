@@ -57,7 +57,7 @@
 
 	<!-- 查询用户记录总数 -->
 	<select id="selectCount" resultType="int">
-		select count(*) from t_student
+		select count(*) from t_student where statu=1
 	</select>
 	<delete id="deleteStudent" parameterType="Integer">
 	    delete from t_student where sId=#{sId}
@@ -72,6 +72,6 @@
 	    select * from t_student where sId=#{sId}
 	</select>
 	<insert id="addStudent" parameterType="com.study.asPage.entry.Student">
-	    insert into t_student (sId,studentName,age,statu) values (#{sId},#{studentName},age=#{age},statu=#{statu})
+	    insert into t_student (sId,studentName,age,statu) values (#{sId},#{studentName},#{age},1)
 	</insert>
 </mapper>
